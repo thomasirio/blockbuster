@@ -1,7 +1,91 @@
 <!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" >
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+<web-app metadata-complete="true">
+    <servlet>
+        <servlet-name>Film Resource</servlet-name>
+        <servlet-class>com.github.thomasirio.FilmResource</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Film Resource</servlet-name>
+        <url-pattern>/film/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Attore Resource</servlet-name>
+        <servlet-class>com.github.thomasirio.AttoreResource</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Attore Resource</servlet-name>
+        <url-pattern>/attore/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Regista Resource</servlet-name>
+        <servlet-class>com.github.thomasirio.RegistaResource</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Regista Resource</servlet-name>
+        <url-pattern>/regista/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Utente Resource</servlet-name>
+        <servlet-class>com.github.thomasirio.UtenteResource</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Utente Resource</servlet-name>
+        <url-pattern>/utente/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Profilo Resource</servlet-name>
+        <servlet-class>com.github.thomasirio.ProfiloResource</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Profilo Resource</servlet-name>
+        <url-pattern>/profilo/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Token Resource</servlet-name>
+        <servlet-class>com.github.thomasirio.TokenResource</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Token Resource</servlet-name>
+        <url-pattern>/token/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Films Resource</servlet-name>
+        <servlet-class>com.github.thomasirio.FilmsResource</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Films Resource</servlet-name>
+        <url-pattern>/films/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Noleggio Resource</servlet-name>
+        <servlet-class>com.github.thomasirio.NoleggioResource</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Noleggio Resource</servlet-name>
+        <url-pattern>/noleggio/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Ingaggio Resource</servlet-name>
+        <servlet-class>com.github.thomasirio.IngaggioResource</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Ingaggio Resource</servlet-name>
+        <url-pattern>/ingaggio/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Attori Resource</servlet-name>
+        <servlet-class>com.github.thomasirio.AttoriResource</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Attori Resource</servlet-name>
+        <url-pattern>/attori/*</url-pattern>
+    </servlet-mapping>
+    <listener>
+        <listener-class>com.github.thomasirio.util.DBHandler</listener-class>
+    </listener>
+    <display-name>Archetype Created Web Application</display-name>
 </web-app>
+

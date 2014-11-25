@@ -1,0 +1,77 @@
+package com.github.thomasirio;
+
+import com.github.thomasirio.exception.FieldValidationException;
+import com.github.thomasirio.model.Profilo;
+import com.github.thomasirio.model.Regista;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+/**
+ * Created by Tommaso on 02/11/2014.
+ */
+public class ProfiloResource extends Controller {
+
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            Regista profilo = Regista.validate(Regista.class, request.getParameter("id"));
+            if(profilo == null)
+                throw new FieldValidationException();
+
+            PrintWriter writer = response.getWriter();
+            writer.println(profilo.toJson());
+        } catch (FieldValidationException e) {
+            e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+//            System.out.println("Metodo doPost");
+            String json = this.readBody(request.getReader()); // Riceve un messaggio JSON inviato tramite POSTMAN di Google
+            Profilo nuovoProfilo = Profilo.fromJson(Profilo.class, json); // Scrive il messaggio su una stessa riga e la stampa
+            nuovoProfilo.save(); // Scrittura dell'oggetto nel database
+
+            PrintWriter writer = response.getWriter();
+            writer.println(nuovoProfilo.toJson()); // Rispedisce al client l'oggetto passato
+        } catch (FieldValidationException e) {
+            e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+
+    @Override
+    public void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//        System.out.println("Metodo doPut");
+        try {
+//            System.out.println("Metodo doPost");
+            String json = this.readBody(request.getReader()); // Riceve un messaggio JSON inviato tramite POSTMAN di Google
+            Profilo nuovoProfilo = Profilo.fromJson(Profilo.class, json); // Scrive il messaggio su una stessa riga e la stampa
+            nuovoProfilo.update(); // Scrittura dell'oggetto nel database
+
+            PrintWriter writer = response.getWriter();
+            writer.println(nuovoProfilo.toJson()); // Rispedisce al client l'oggetto passato
+        } catch (FieldValidationException e) {
+            e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+
+    @Override
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) {
+//        System.out.println("Metodo doDelete");
+        try {
+//            System.out.println("Metodo doPost");
+            Profilo profilo = Profilo.validate(Profilo.class, request.getParameter("id"));
+            profilo.delete();
+        } catch (FieldValidationException e) {
+            e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+}
